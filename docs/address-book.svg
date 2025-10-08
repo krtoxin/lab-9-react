@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <defs>
+    <style>
+      .box { fill:#ffffff; stroke:#333333; stroke-width:1.5; rx:8; ry:8; }
+      .title { font: 600 14px sans-serif; fill:#222; }
+      .note { font: 12px sans-serif; fill:#555; }
+      .data { fill:#f5f5f5; stroke:#666; }
+      .line { stroke:#888; stroke-width:1.25; marker-end:url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <rect x="40" y="40" width="220" height="70" class="box"/>
+  <text x="60" y="75" class="title">App</text>
+  <text x="60" y="95" class="note">state, persistence, filtering</text>
+
+  <rect x="40" y="150" width="260" height="70" class="box"/>
+  <text x="60" y="185" class="title">Add Form</text>
+  <text x="60" y="205" class="note">required: firstName, lastName, phone</text>
+
+  <rect x="330" y="150" width="220" height="70" class="box"/>
+  <text x="350" y="185" class="title">Search</text>
+  <text x="350" y="205" class="note">filter by first/last/phone</text>
+
+  <rect x="40" y="260" width="510" height="120" class="box"/>
+  <text x="60" y="295" class="title">Table</text>
+  <text x="60" y="315" class="note">columns: id, First Name, Last Name, Phone</text>
+  <text x="60" y="335" class="note">inline edit with non-empty validation</text>
+
+  <rect x="630" y="60" width="200" height="70" class="box data"/>
+  <text x="650" y="95" class="title">types.Book</text>
+  <text x="650" y="115" class="note">id, firstName, lastName, phone</text>
+
+  <rect x="610" y="170" width="240" height="90" class="box data"/>
+  <text x="630" y="205" class="title">storage</text>
+  <text x="630" y="225" class="note">loadBooks, saveBooks, generateId</text>
+
+  <line x1="150" y1="110" x2="170" y2="150" class="line"/>
+  <line x1="240" y1="110" x2="390" y2="150" class="line"/>
+  <line x1="220" y1="110" x2="250" y2="260" class="line"/>
+  <line x1="260" y1="75" x2="630" y2="95" class="line"/>
+  <line x1="260" y1="95" x2="610" y2="215" class="line"/>
+
+  <text x="40" y="410" class="note">Empty state: "No data to display."</text>
+  <text x="40" y="435" class="note">Validation messages: red text, e.g., "The first name is required"</text>
+  <text x="40" y="460" class="note">Persistence: localStorage</text>
+</svg>
+
+

@@ -12,19 +12,18 @@ Data persistence: localStorage.
 
 Schema:
 
-```
-docs/address-book.drawio
-```
+![Address Book Diagram](docs/address-book.svg)
 
 Patterns used for table rendering:
 
 - Container-presentational split inside `App` for state and rendering
 - Controlled inputs for form, search, and edit fields
 - Derived state via memoization for filtered list
+- Conditional rendering for empty state ("No data to display.")
+- Inline editing with validation before saving
 
 Scripts:
 
 - dev: `npm run dev`
 - build: `npm run build`
 - preview: `npm run preview`
-- vercel: uses `vercel.json` and `npm run vercel-build`
