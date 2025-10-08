@@ -12,6 +12,7 @@ Data persistence: localStorage.
 
 Schema:
 
+![Address Book Diagram](docs/address-book.svg)
 ```
 docs/address-book.drawio
 ```
