@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import { validateBook } from '../types';
-import type { BookDraft, ValidationErrors } from '../types';
+import React, { useState } from 'react'
+import { validateBook } from '../types'
+import type { BookDraft, ValidationErrors } from '../types'
 
 interface Props {
-  onAdd: (draft: BookDraft) => void;
+  onAdd: (draft: BookDraft) => void
 }
 
-const initial: BookDraft = { firstName: '', lastName: '', phone: '' };
+const initial: BookDraft = { firstName: '', lastName: '', phone: '' }
 
 const AddBookForm: React.FC<Props> = ({ onAdd }) => {
-  const [form, setForm] = useState<BookDraft>(initial);
-  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [form, setForm] = useState<BookDraft>(initial)
+  const [errors, setErrors] = useState<ValidationErrors>({})
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setForm(f => ({ ...f, [name]: value }));
-    setErrors(err => ({ ...err, [name]: undefined }));
+    const { name, value } = e.target
+    setForm((f) => ({ ...f, [name]: value }))
+    setErrors((err) => ({ ...err, [name]: undefined }))
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+    e.preventDefault()
     const trimmed: BookDraft = {
       firstName: form.firstName.trim(),
       lastName: form.lastName.trim(),
       phone: form.phone.trim(),
-    };
-    const v = validateBook(trimmed);
-    if (Object.keys(v).length) {
-      setErrors(v);
-      return;
     }
-    onAdd(trimmed);
-    setForm(initial);
+    const v = validateBook(trimmed)
+    if (Object.keys(v).length) {
+      setErrors(v)
+      return
+    }
+    onAdd(trimmed)
+    setForm(initial)
   }
 
   return (
@@ -53,7 +53,7 @@ const AddBookForm: React.FC<Props> = ({ onAdd }) => {
       </div>
       <button type="submit">Add</button>
     </form>
-  );
-};
+  )
+}
 
-export default AddBookForm;
+export default AddBookForm

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { validateBook } from '../types';
-import type { Book, BookDraft, ValidationErrors } from '../types';
+import React, { useState } from 'react'
+import { validateBook } from '../types'
+import type { Book, BookDraft, ValidationErrors } from '../types'
 
 interface Props {
-  books: Book[];
-  onUpdate: (id: string, draft: BookDraft) => void;
+  books: Book[]
+  onUpdate: (id: string, draft: BookDraft) => void
 }
 
 const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [draft, setDraft] = useState<BookDraft>({ firstName: '', lastName: '', phone: '' });
-  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [draft, setDraft] = useState<BookDraft>({ firstName: '', lastName: '', phone: '' })
+  const [errors, setErrors] = useState<ValidationErrors>({})
 
   function startEdit(b: Book) {
-    setEditingId(b.id);
-    setDraft({ firstName: b.firstName, lastName: b.lastName, phone: b.phone });
-    setErrors({});
+    setEditingId(b.id)
+    setDraft({ firstName: b.firstName, lastName: b.lastName, phone: b.phone })
+    setErrors({})
   }
 
   function cancel() {
-    setEditingId(null);
-    setDraft({ firstName: '', lastName: '', phone: '' });
-    setErrors({});
+    setEditingId(null)
+    setDraft({ firstName: '', lastName: '', phone: '' })
+    setErrors({})
   }
 
   function save() {
@@ -29,16 +29,16 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
       firstName: draft.firstName.trim(),
       lastName: draft.lastName.trim(),
       phone: draft.phone.trim(),
-    };
-    const v = validateBook(trimmed);
+    }
+    const v = validateBook(trimmed)
     if (Object.keys(v).length) {
-      setErrors(v);
-      return;
+      setErrors(v)
+      return
     }
     if (editingId) {
-      onUpdate(editingId, trimmed);
+      onUpdate(editingId, trimmed)
     }
-    cancel();
+    cancel()
   }
 
   return (
@@ -55,11 +55,13 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
       <tbody>
         {books.length === 0 ? (
           <tr>
-            <td colSpan={5} style={{ textAlign: 'center' }}>No data to display.</td>
+            <td colSpan={5} style={{ textAlign: 'center' }}>
+              No data to display.
+            </td>
           </tr>
         ) : (
-          books.map(b => {
-            const isEditing = b.id === editingId;
+          books.map((b) => {
+            const isEditing = b.id === editingId
             return (
               <tr key={b.id}>
                 <td>{b.id}</td>
@@ -68,9 +70,9 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
                     <>
                       <input
                         value={draft.firstName}
-                        onChange={e => {
-                          setDraft(d => ({ ...d, firstName: e.target.value }));
-                          setErrors(er => ({ ...er, firstName: undefined }));
+                        onChange={(e) => {
+                          setDraft((d) => ({ ...d, firstName: e.target.value }))
+                          setErrors((er) => ({ ...er, firstName: undefined }))
                         }}
                       />
                       {errors.firstName && <div className="error">{errors.firstName}</div>}
@@ -84,9 +86,9 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
                     <>
                       <input
                         value={draft.lastName}
-                        onChange={e => {
-                          setDraft(d => ({ ...d, lastName: e.target.value }));
-                          setErrors(er => ({ ...er, lastName: undefined }));
+                        onChange={(e) => {
+                          setDraft((d) => ({ ...d, lastName: e.target.value }))
+                          setErrors((er) => ({ ...er, lastName: undefined }))
                         }}
                       />
                       {errors.lastName && <div className="error">{errors.lastName}</div>}
@@ -100,9 +102,9 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
                     <>
                       <input
                         value={draft.phone}
-                        onChange={e => {
-                          setDraft(d => ({ ...d, phone: e.target.value }));
-                          setErrors(er => ({ ...er, phone: undefined }));
+                        onChange={(e) => {
+                          setDraft((d) => ({ ...d, phone: e.target.value }))
+                          setErrors((er) => ({ ...er, phone: undefined }))
                         }}
                       />
                       {errors.phone && <div className="error">{errors.phone}</div>}
@@ -115,19 +117,21 @@ const BooksTable: React.FC<Props> = ({ books, onUpdate }) => {
                   {isEditing ? (
                     <>
                       <button onClick={save}>Save</button>
-                      <button type="button" onClick={cancel}>Cancel</button>
+                      <button type="button" onClick={cancel}>
+                        Cancel
+                      </button>
                     </>
                   ) : (
                     <button onClick={() => startEdit(b)}>Edit</button>
                   )}
                 </td>
               </tr>
-            );
+            )
           })
         )}
       </tbody>
     </table>
-  );
-};
+  )
+}
 
-export default BooksTable;
+export default BooksTable

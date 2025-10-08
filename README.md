@@ -3,6 +3,7 @@
 Minimal React + TypeScript address book with inline editing, validation, search and local persistence.
 
 ## Features
+
 - Add contact: required fields (first name, last name, phone) with messages:
   - The first name is required
   - The last name is required
@@ -14,6 +15,7 @@ Minimal React + TypeScript address book with inline editing, validation, search 
 - Stable generated `id`
 
 ## Data Model
+
 ```
 Book {
   id: string
@@ -44,6 +46,7 @@ classDiagram
 ```
 
 ## Patterns
+
 - Lifting State Up (all core state in `App`)
 - Controlled Inputs (form, search, edit)
 - Inline Editing
@@ -53,9 +56,9 @@ classDiagram
 - Persistence (localStorage)
 
 ## Scripts
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Dev server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview build |
 
+| Command           | Purpose          |
+| ----------------- | ---------------- |
+| `npm run dev`     | Dev server       |
+| `npm run build`   | Production build |
+| `npm run preview` | Preview build    |
