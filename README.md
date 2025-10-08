@@ -12,7 +12,21 @@ Data persistence: localStorage.
 
 Schema:
 
-![Address Book Diagram](docs/address-book.svg)
+```mermaid
+flowchart TB
+  A[App]\nstate: none --> B[AddressTable]\nuses useAddressBook
+  B --> C[useAddressBook\nitems(filtered), query, editingId, editDraft\nadd/remove/startEdit/saveEdit/cancelEdit/setQuery]
+  B --> D[AddForm\nprops: onAdd]
+  B --> E[Controls\nprops: query, setQuery]
+  B --> F[RowItem\nprops: book, isEditing, onStartEdit, onSave, onCancel]
+  B --> G[types.Book\nid, firstName, lastName, phone]
+  B --> H[storage\nloadBooks, saveBooks, generateId]
+  D -. onAdd(book) .-> B
+  E -. setQuery .-> B
+  F -. onStartEdit/onSave/onCancel .-> B
+```
+
+Source file:
 ```
 docs/address-book.drawio
 ```
