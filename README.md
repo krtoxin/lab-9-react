@@ -1,45 +1,61 @@
 # Address Book
 
-Requirements implemented:
+Minimal React + TypeScript address book with inline editing, validation, search and local persistence.
 
-- firstName, lastName, phone are required on add with messages like "The first name is required"
-- table shows id, First Name, Last Name, Phone
-- search by first/last/phone
-- inline row editing with non-empty validation
-- empty state: "No data to display."
+## Features
+- Add contact: required fields (first name, last name, phone) with messages:
+  - The first name is required
+  - The last name is required
+  - The phone is required
+- Inline row editing (cannot save empty fields)
+- Search (first / last / phone, case-insensitive)
+- Empty state: `No data to display.`
+- Data persisted in `localStorage`
+- Stable generated `id`
 
-Data persistence: localStorage.
+## Data Model
+```
+Book {
+  id: string
+  firstName: string
+  lastName: string
+  phone: string
+}
+```
 
-Schema:
+## Architecture (overview)
 
 ```mermaid
-flowchart TB
-  A[App]\nstate: none --> B[AddressTable]\nuses useAddressBook
-  B --> C[useAddressBook\nitems(filtered), query, editingId, editDraft\nadd/remove/startEdit/saveEdit/cancelEdit/setQuery]
-  B --> D[AddForm\nprops: onAdd]
-  B --> E[Controls\nprops: query, setQuery]
-  B --> F[RowItem\nprops: book, isEditing, onStartEdit, onSave, onCancel]
-  B --> G[types.Book\nid, firstName, lastName, phone]
-  B --> H[storage\nloadBooks, saveBooks, generateId]
-  D -. onAdd(book) .-> B
-  E -. setQuery .-> B
-  F -. onStartEdit/onSave/onCancel .-> B
+classDiagram
+  class App {
+    state: Book[] items
+    state: string query
+    +addBook()
+    +updateBook()
+  }
+  class AddBookForm { props: onAdd() }
+  class SearchBar { props: value,onChange() }
+  class BooksTable { props: books,onUpdate() }
+  class Book { id firstName lastName phone }
+  App --> AddBookForm
+  App --> SearchBar
+  App --> BooksTable
+  BooksTable --> Book
 ```
 
-Source file:
-```
-docs/address-book.drawio
-```
+## Patterns
+- Lifting State Up (all core state in `App`)
+- Controlled Inputs (form, search, edit)
+- Inline Editing
+- Validation (required fields)
+- Conditional Rendering (empty state)
+- Immutability (array updates via `map`)
+- Persistence (localStorage)
 
-Patterns used for table rendering:
+## Scripts
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview build |
 
-- Container-presentational split inside `App` for state and rendering
-- Controlled inputs for form, search, and edit fields
-- Derived state via memoization for filtered list
-
-Scripts:
-
-- dev: `npm run dev`
-- build: `npm run build`
-- preview: `npm run preview`
-- vercel: uses `vercel.json` and `npm run vercel-build`
