@@ -27,3 +27,4 @@ Scripts:
 - dev: `npm run dev`
 - build: `npm run build`
 - preview: `npm run preview`
+- vercel: uses `vercel.json` and `npm run vercel-build`
