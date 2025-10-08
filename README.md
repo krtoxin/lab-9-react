@@ -3,6 +3,7 @@
 Minimal React + TypeScript address book with inline editing, validation, search and local persistence.
 
 ## Features
+
 - Add contact (required: first name, last name, phone) with messages:
   - The first name is required
   - The last name is required
@@ -14,6 +15,7 @@ Minimal React + TypeScript address book with inline editing, validation, search 
 - Stable generated `id` values
 
 ## Data Model
+
 ```
 Book {
   id: string
@@ -24,6 +26,7 @@ Book {
 ```
 
 ## Architecture (overview)
+
 ```mermaid
 classDiagram
   class App {
@@ -43,6 +46,7 @@ classDiagram
 ```
 
 ## Table Rendering Patterns
+
 - Keyed List Rendering: each row uses `book.id` as a stable React key (efficient diff).
 - Inline Editing Pattern: a row switches between static text and controlled `<input>` fields when editing.
 - Controlled Inputs: edit fields’ values bound to state (`editDraft`) for predictable updates & validation.
@@ -55,6 +59,7 @@ classDiagram
 - Semantic Role Preservation: still a native `<table>` for accessibility instead of purely div layout.
 
 ## General Patterns
+
 - Lifting State Up
 - Persistence (localStorage)
 - Early Return on validation failure
@@ -62,16 +67,18 @@ classDiagram
 - Clear error messaging per field
 
 ## Scripts
-| Command | Purpose |
-| ------- | ------- |
-| `npm run dev` | Dev server |
-| `npm run build` | Production build (`vite build`) |
-| `npm run preview` | Preview built assets |
-| `npm run lint` | ESLint check |
-| `npm run lint:fix` | ESLint auto-fix |
-| `npm run format` | Prettier format |
-| `npm run format:check` | Prettier check |
+
+| Command                | Purpose                         |
+| ---------------------- | ------------------------------- |
+| `npm run dev`          | Dev server                      |
+| `npm run build`        | Production build (`vite build`) |
+| `npm run preview`      | Preview built assets            |
+| `npm run lint`         | ESLint check                    |
+| `npm run lint:fix`     | ESLint auto-fix                 |
+| `npm run format`       | Prettier format                 |
+| `npm run format:check` | Prettier check                  |
 
 ## Deployment Notes
+
 - Built with Vite — output directory is `dist`.
 - On Vercel: either omit `vercel.json` (auto-detect) or use a minimal config (see below).

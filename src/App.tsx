@@ -17,8 +17,8 @@ function App() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (!q) return items
-    return items.filter(b =>
-      [b.firstName, b.lastName, b.phone].some(v => v.toLowerCase().includes(q))
+    return items.filter((b) =>
+      [b.firstName, b.lastName, b.phone].some((v) => v.toLowerCase().includes(q))
     )
   }, [items, query])
 
@@ -44,7 +44,7 @@ function App() {
     }
     setFormErrors({})
     const newItem: Book = { id: generateId(), firstName, lastName, phone }
-    setItems(prev => [newItem, ...prev])
+    setItems((prev) => [newItem, ...prev])
     form.reset()
     form.querySelector<HTMLInputElement>('input[name="firstName"]')?.focus()
   }
@@ -65,8 +65,8 @@ function App() {
     const phone = String(editDraft.phone || '').trim()
     const errors = validate(firstName, lastName, phone)
     if (Object.keys(errors).length) return
-    setItems(prev =>
-      prev.map(b => (b.id === editingId ? { ...b, firstName, lastName, phone } : b))
+    setItems((prev) =>
+      prev.map((b) => (b.id === editingId ? { ...b, firstName, lastName, phone } : b))
     )
     cancelEdit()
   }
@@ -135,7 +135,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map(b => {
+                {filtered.map((b) => {
                   const editing = editingId === b.id
                   return (
                     <tr key={b.id} data-editing={editing || undefined}>
@@ -145,10 +145,12 @@ function App() {
                             className="inline-input"
                             value={editDraft.firstName || ''}
                             onChange={(e) =>
-                              setEditDraft(d => ({ ...d, firstName: e.target.value }))
+                              setEditDraft((d) => ({ ...d, firstName: e.target.value }))
                             }
                           />
-                        ) : b.firstName}
+                        ) : (
+                          b.firstName
+                        )}
                       </td>
                       <td data-label="Last Name">
                         {editing ? (
@@ -156,21 +158,23 @@ function App() {
                             className="inline-input"
                             value={editDraft.lastName || ''}
                             onChange={(e) =>
-                              setEditDraft(d => ({ ...d, lastName: e.target.value }))
+                              setEditDraft((d) => ({ ...d, lastName: e.target.value }))
                             }
                           />
-                        ) : b.lastName}
+                        ) : (
+                          b.lastName
+                        )}
                       </td>
                       <td data-label="Phone" style={{ fontFamily: 'var(--font-mono)' }}>
                         {editing ? (
                           <input
                             className="inline-input"
                             value={editDraft.phone || ''}
-                            onChange={(e) =>
-                              setEditDraft(d => ({ ...d, phone: e.target.value }))
-                            }
+                            onChange={(e) => setEditDraft((d) => ({ ...d, phone: e.target.value }))}
                           />
-                        ) : b.phone}
+                        ) : (
+                          b.phone
+                        )}
                       </td>
                       <td data-label="Actions">
                         <div className="row-actions">
@@ -179,26 +183,17 @@ function App() {
                               <button
                                 onClick={saveEdit}
                                 disabled={
-                                  !editDraft.firstName ||
-                                  !editDraft.lastName ||
-                                  !editDraft.phone
+                                  !editDraft.firstName || !editDraft.lastName || !editDraft.phone
                                 }
                               >
                                 Save
                               </button>
-                              <button
-                                type="button"
-                                className="secondary"
-                                onClick={cancelEdit}
-                              >
+                              <button type="button" className="secondary" onClick={cancelEdit}>
                                 Cancel
                               </button>
                             </>
                           ) : (
-                            <button
-                              type="button"
-                              onClick={() => startEdit(b)}
-                            >
+                            <button type="button" onClick={() => startEdit(b)}>
                               Edit
                             </button>
                           )}

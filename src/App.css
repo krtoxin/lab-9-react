@@ -1,7 +1,13 @@
-@import "./theme.css";
+@import './theme.css';
 
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -17,7 +23,11 @@ h1 {
   font-weight: var(--fw-bold);
   letter-spacing: -0.5px;
 }
-.subtitle { font-size: var(--fs-sm); color: var(--color-text-subtle); margin: 0; }
+.subtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-subtle);
+  margin: 0;
+}
 
 .viewport {
   width: 100%;
@@ -29,7 +39,7 @@ h1 {
 
 .main {
   width: 100%;
-  max-width: 880px; 
+  max-width: 880px;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -38,14 +48,19 @@ h1 {
 .card {
   background: var(--color-surface);
   border-radius: 18px;
-  box-shadow: 0 0 0 1px var(--color-border), 0 4px 14px -4px rgba(0,0,0,.35);
+  box-shadow:
+    0 0 0 1px var(--color-border),
+    0 4px 14px -4px rgba(0, 0, 0, 0.35);
   padding: 28px 28px 32px;
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.table-card { padding: 0; overflow: hidden; }
+.table-card {
+  padding: 0;
+  overflow: hidden;
+}
 
 .add-form {
   display: grid;
@@ -54,18 +69,28 @@ h1 {
   align-items: end;
 }
 @media (max-width: 840px) {
-  .add-form { grid-template-columns: 1fr 1fr; }
-  .add-form .actions { grid-column: 1 / -1; }
+  .add-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .add-form .actions {
+    grid-column: 1 / -1;
+  }
 }
 @media (max-width: 560px) {
-  .add-form { grid-template-columns: 1fr; }
+  .add-form {
+    grid-template-columns: 1fr;
+  }
 }
 
-.field { display: flex; flex-direction: column; gap: 6px; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .field label {
   font-size: var(--fs-sm);
   font-weight: 500;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
 }
 
 .input,
@@ -77,11 +102,16 @@ h1 {
   height: 44px;
   padding: 0 14px;
   color: var(--color-text);
-  transition: border-color .15s, background .15s, box-shadow .15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    box-shadow 0.15s;
   width: 100%;
 }
 .input:hover,
-.search-bar input:hover { background: rgba(255,255,255,0.04); }
+.search-bar input:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
 .input:focus,
 .search-bar input:focus {
   outline: none;
@@ -110,19 +140,34 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: background .18s, transform .18s;
+  transition:
+    background 0.18s,
+    transform 0.18s;
 }
-button:enabled:hover { background: var(--color-accent-hover); }
-button:enabled:active { transform: translateY(1px); }
-button:disabled { opacity: .55; cursor: not-allowed; }
+button:enabled:hover {
+  background: var(--color-accent-hover);
+}
+button:enabled:active {
+  transform: translateY(1px);
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 button.secondary {
   background: var(--color-surface-alt);
   border-color: var(--color-border);
   color: var(--color-text);
 }
-button.secondary:hover { background: var(--color-surface); }
+button.secondary:hover {
+  background: var(--color-surface);
+}
 
-.search-bar { display: flex; flex-direction: column; gap: 8px; }
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .search-bar label {
   font-size: var(--fs-sm);
   font-weight: 500;
@@ -141,7 +186,7 @@ button.secondary:hover { background: var(--color-surface); }
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: -.3px;
+  letter-spacing: -0.3px;
 }
 
 .badge {
@@ -151,7 +196,7 @@ button.secondary:hover { background: var(--color-surface); }
   font-size: 11px;
   border-radius: 999px;
   font-weight: 600;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .data-table {
@@ -166,11 +211,15 @@ button.secondary:hover { background: var(--color-surface); }
   font-weight: 600;
   color: var(--color-text-subtle);
   background: var(--color-surface-alt);
-  letter-spacing: .35px;
+  letter-spacing: 0.35px;
   white-space: nowrap;
 }
-.data-table tbody tr { transition: background .18s; }
-.data-table tbody tr:hover { background: var(--color-accent-soft); }
+.data-table tbody tr {
+  transition: background 0.18s;
+}
+.data-table tbody tr:hover {
+  background: var(--color-accent-soft);
+}
 .data-table td {
   padding: 14px 18px;
   border-top: 1px solid var(--color-border);
@@ -191,7 +240,9 @@ tr[data-editing='true'] {
   border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 6px 8px;
-  transition: border-color .15s, background .15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
 .inline-input:focus {
   outline: none;
@@ -200,7 +251,11 @@ tr[data-editing='true'] {
   box-shadow: 0 0 0 2px var(--color-focus-ring);
 }
 
-.row-actions { display: flex; gap: 6px; align-items: center; }
+.row-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
 
 .empty-state {
   padding: 60px 24px 64px;
@@ -212,18 +267,26 @@ tr[data-editing='true'] {
 }
 
 @media (max-width: 640px) {
-  .data-table thead { display: none; }
+  .data-table thead {
+    display: none;
+  }
   .data-table,
   .data-table tbody,
   .data-table tr,
-  .data-table td { display: block; width: 100%; }
+  .data-table td {
+    display: block;
+    width: 100%;
+  }
   .data-table tr {
     margin: 0 0 14px;
     border: 1px solid var(--color-border);
     border-radius: 14px;
     overflow: hidden;
   }
-  .data-table td { border: none; padding: 10px 16px; }
+  .data-table td {
+    border: none;
+    padding: 10px 16px;
+  }
   .data-table td[data-label]:before {
     content: attr(data-label);
     display: block;
@@ -232,9 +295,12 @@ tr[data-editing='true'] {
     font-weight: 600;
     color: var(--color-text-subtle);
     margin-bottom: 2px;
-    letter-spacing: .6px;
+    letter-spacing: 0.6px;
   }
-  .row-actions { padding-top: 4px; border-top: 1px solid var(--color-border); }
+  .row-actions {
+    padding-top: 4px;
+    border-top: 1px solid var(--color-border);
+  }
 }
 
 .viewport {
@@ -267,5 +333,5 @@ tr[data-editing='true'] {
   border-collapse: collapse;
   font-size: 14px;
   table-layout: fixed;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
